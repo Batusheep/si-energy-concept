@@ -1,0 +1,1137 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Витрина Ayurveda Water</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Концепт-экран линейки Ayurveda Water: шесть аюрведических эликсиров на родниковой воде.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one pinned 100vh stage — flavour wheel | 3D bottle | property arc; on phones a vertical stack for the thumb.
+   Single light "ayurveda spa" theme by brief: cream base, graphite ink, AV gold; the active flavour is the only colour. */
+:root{
+  --cream:#F6F1EA;
+  --paper:#FBF8F3;
+  --ink:#1F1D1A;
+  --ink-2:#5E574D;
+  --ink-3:#8D857A;
+  --gold:#B08D57;
+  --line:rgba(31,29,26,.12);
+  --line-2:rgba(31,29,26,.22);
+  /* flavour tokens, rewritten by script on every switch */
+  --tint:#A68BC9; --tint-soft:#D3C7DF; --tint-faint:#EDE6EC; --tint-name:#DCD0E2; --tint-ink:#6E5B88; --tint-on:#fff;
+  --f-display:"Cormorant Garamond","Cormorant",Georgia,"Times New Roman",serif;
+  --f-body:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  color-scheme:light;
+}
+html{background:var(--cream)}
+body{background:var(--cream);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;overflow-x:clip;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:999px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- stage ---------- */
+.stage{position:relative;height:100vh;overflow:hidden;isolation:isolate;background:var(--cream)}
+.bg{position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(46% 56% at 50% 55%, var(--tint-soft) 0%, rgba(246,241,234,0) 74%),
+    radial-gradient(70% 60% at 88% 4%, var(--tint-faint) 0%, rgba(246,241,234,0) 62%),
+    linear-gradient(180deg, var(--tint-faint) 0%, var(--cream) 82%);}
+.bg::after{content:"";position:absolute;inset:0;opacity:.32;mix-blend-mode:multiply;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .34 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+.bigname{position:absolute;left:0;right:0;top:50%;z-index:1;text-align:center;pointer-events:none;user-select:none;
+  font-family:var(--f-display);font-weight:500;line-height:.8;letter-spacing:-.005em;color:var(--tint-name);transform:translateY(-50%)}
+.bigname .ln{display:block;width:max-content;margin:0 auto;white-space:nowrap}
+.bigname .ch{display:inline-block;will-change:transform}
+
+.ing-layer{position:absolute;inset:0;pointer-events:none}
+.ing-back{z-index:2}
+.ing-front{z-index:4}
+.ing{position:absolute;left:0;top:0;will-change:transform}
+.ing-fly{display:block;width:100%;height:100%}
+.ing svg{display:block;width:100%;height:100%;overflow:visible;animation:float var(--fd,7s) ease-in-out var(--fdl,0s) infinite alternate}
+.ing.is-far svg{filter:blur(1.2px) saturate(.9)}
+@keyframes float{from{transform:translateY(-4%) rotate(var(--r0,0deg))}to{transform:translateY(5%) rotate(var(--r1,6deg))}}
+
+.gl{position:absolute;inset:0;z-index:3;pointer-events:none}
+.gl canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity .8s var(--ease)}
+.gl canvas.is-live{opacity:1}
+.slot{position:absolute;z-index:3;left:0;top:0;width:10px;height:10px;touch-action:pan-y;cursor:grab}
+.slot.is-drag{cursor:grabbing}
+.fb{position:absolute;left:50%;top:50%;height:86%;aspect-ratio:200/520;transform:translate(-50%,-50%);transition:opacity .6s var(--ease)}
+.fb-in{width:100%;height:100%;display:block}
+.fb svg{width:100%;height:100%;display:block;overflow:visible}
+.fb.is-hidden{opacity:0;pointer-events:none}
+
+/* ---------- UI grid ---------- */
+.ui{position:absolute;inset:0;z-index:5;display:grid;pointer-events:none;
+  grid-template-columns:1fr minmax(0,36vw) 1fr;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  grid-template-areas:"head head head" "wheel center props" "foot foot foot";
+  padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px))}
+.ui a,.ui button{pointer-events:auto}
+
+.head{grid-area:head;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px 10px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.logo svg{width:42px;height:42px;flex:none}
+.logo-t{display:flex;flex-direction:column;line-height:1.05}
+.logo-t b{font-family:var(--f-display);font-weight:600;font-size:21px;letter-spacing:.01em;white-space:nowrap}
+.logo-t span{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-top:4px}
+.tagline{font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.25;color:var(--ink-2);max-width:23em;text-align:right;text-wrap:balance}
+
+.mtitle{grid-area:title;display:none}
+.center{grid-area:center;min-height:0}
+
+/* flavour wheel */
+.wheel{grid-area:wheel;position:relative;min-height:0}
+.fl{position:absolute;left:0;top:0;width:56px;height:56px;display:grid;place-items:center;border-radius:50%;will-change:transform}
+.dot{position:relative;width:64px;height:64px;border-radius:50%;transform:scale(var(--s,.62));transition:none;pointer-events:none}
+.dot i{position:absolute;inset:0;border-radius:50%}
+.dot .ring{background:rgba(251,248,243,.7);box-shadow:inset 0 0 0 1.5px var(--line-2)}
+.dot .pip{inset:38%;background:var(--c)}
+.dot .fill{background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.75) 0,rgba(255,255,255,0) 38%),radial-gradient(circle at 60% 75%,rgba(0,0,0,.18),rgba(0,0,0,0) 60%),var(--c);opacity:var(--t,0);box-shadow:0 10px 24px -10px var(--c)}
+.dot .halo{inset:-7px;box-shadow:inset 0 0 0 1px var(--gold);opacity:var(--t,0)}
+.fl-txt{position:absolute;left:calc(100% + 24px);top:50%;transform:translateY(-50%);white-space:nowrap;text-align:left;pointer-events:none;display:flex;flex-direction:column;gap:2px}
+.fl-num{font-size:11px;letter-spacing:.2em;color:var(--tint-ink);opacity:var(--t,0);font-variant-numeric:tabular-nums;height:calc(var(--t,0)*16px);overflow:hidden}
+.fl-name{font-family:var(--f-display);font-weight:500;font-size:calc(17px + var(--t,0)*17px);line-height:1;color:var(--ink);opacity:calc(.45 + var(--t,0)*.55)}
+.fl-comp{font-size:13px;color:var(--ink-2);opacity:var(--t,0);height:calc(var(--t,0)*20px);overflow:hidden}
+.fl:hover .fl-name{opacity:1}
+
+/* properties */
+.props{grid-area:props;position:relative;min-height:0}
+.pr-pos{position:absolute;left:0;top:0;width:52px;height:52px}
+.pr{display:flex;align-items:center;gap:16px;width:max-content;height:52px}
+.pr-ic{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:var(--tint-ink);
+  background:rgba(251,248,243,.55);box-shadow:inset 0 0 0 1px var(--line-2);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tint-ink) 34%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.pr-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.pr-ic svg text{fill:currentColor;stroke:none;font-family:var(--f-body);font-weight:600}
+.pr-t{font-size:15px;font-weight:500;line-height:1.3;max-width:190px;text-wrap:balance}
+.props-cap{display:none}
+
+/* footer */
+.foot{grid-area:foot;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:10px 24px}
+.hint{display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.hint svg{width:16px;height:24px;fill:none;stroke:currentColor;stroke-width:1.3}
+.hint svg .wheel-dot{animation:wheelhint 1.8s var(--ease) infinite}
+@keyframes wheelhint{0%{transform:translateY(0);opacity:1}70%{transform:translateY(5px);opacity:0}100%{opacity:0}}
+.nav{display:flex;align-items:center;gap:18px}
+.ctrl{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line-2);background:rgba(251,248,243,.4);transition:background .3s var(--ease),transform .2s var(--ease)}
+.ctrl:hover{background:var(--paper)}
+.ctrl:active{transform:scale(.94)}
+.ctrl svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.count{white-space:nowrap;display:flex;align-items:baseline;gap:6px;min-width:84px;justify-content:center;font-variant-numeric:tabular-nums}
+.count b{font-family:var(--f-body);font-weight:500;font-size:24px;line-height:1;letter-spacing:.02em;color:var(--tint-ink)}
+.count span{font-size:13px;color:var(--ink-3);letter-spacing:.08em}
+.foot-r{display:flex;justify-content:flex-end}
+.more{height:48px;padding:0 24px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;box-shadow:inset 0 0 0 1px var(--ink);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:background .3s var(--ease),color .3s var(--ease),transform .2s var(--ease)}
+.more:hover{background:var(--ink);color:var(--cream)}
+.more:active{transform:scale(.97)}
+.more svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+
+/* ---------- details sheet ---------- */
+.mbar{display:none;align-items:center;justify-content:space-between;gap:16px;background:var(--cream);border-top:1px solid var(--line);
+  padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mbar .logo svg{width:36px;height:36px}
+.mbar .logo-t b{font-size:18px}
+.mbar .logo-t span{font-size:9.5px}
+.mbar .more{height:44px;padding:0 18px;font-size:11px;letter-spacing:.12em}
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(31,29,26,.18);opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+.sheet{position:fixed;z-index:41;right:max(24px,env(safe-area-inset-right,0px));top:50%;width:min(420px,calc(100vw - 32px));max-height:calc(100vh - 48px);overflow:auto;
+  background:var(--paper);border-radius:28px;box-shadow:0 30px 80px -30px rgba(31,29,26,.35),0 0 0 1px var(--line);
+  padding:32px 32px 28px;transform:translate(24px,-50%);opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .4s var(--ease),visibility 0s .5s}
+.is-sheet .scrim{opacity:1;pointer-events:auto}
+.is-sheet .sheet{transform:translate(0,-50%);opacity:1;visibility:visible;transition:transform .5s var(--ease),opacity .4s var(--ease)}
+.sheet-x{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.sheet-x:hover{background:var(--cream)}
+.sheet-x svg{width:16px;height:16px;stroke:currentColor;stroke-width:1.6;fill:none}
+.sheet-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--tint-ink);font-weight:600}
+.sheet h2{font-family:var(--f-display);font-weight:500;font-size:44px;line-height:1;margin:8px 0 22px;text-wrap:balance}
+.sheet dl{margin:0;display:grid;gap:18px}
+.sheet dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:4px}
+.sheet dd{margin:0;font-size:15px;color:var(--ink)}
+.sheet ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.sheet li{display:flex;gap:10px;align-items:baseline}
+.sheet li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--tint);transform:translateY(-2px)}
+.sheet-note{margin:22px 0 0;padding-top:18px;border-top:1px solid var(--line);font-family:var(--f-display);font-style:italic;font-size:18px;line-height:1.3;color:var(--ink-2)}
+
+/* ---------- after ---------- */
+.after{position:relative;z-index:1;background:var(--cream);padding-block:clamp(72px,14vh,160px);padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(28px,env(safe-area-inset-right,0px));border-top:1px solid var(--line)}
+.after-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px;align-items:end}
+.after h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,4.6vw,68px);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.after h2 em{color:var(--gold)}
+.swatches{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
+.swatches button{display:flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 8px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-2);font-size:13px;font-weight:500;transition:background .3s var(--ease)}
+.swatches button:hover{background:var(--paper)}
+.swatches i{width:28px;height:28px;border-radius:50%;background:var(--c)}
+.after p{margin:20px 0 0;color:var(--ink-3);font-size:13px}
+
+/* ---------- phone & tablet portrait ---------- */
+@media (max-width:760px), (orientation:portrait) and (max-width:1100px){
+  .stage{height:100vh;height:100svh}
+  .ui{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;
+    grid-template-areas:"title" "center" "props" "wheel";
+    padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .head,.foot,.hint{display:none}
+  .mbar{display:flex}
+  .mtitle-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .mtitle .count{min-width:0}
+  .mtitle .count b{font-size:20px}
+  .mtitle{display:block;padding-top:18px}
+  .mtitle h1{font-family:var(--f-display);font-weight:500;font-size:clamp(34px,10vw,48px);line-height:1;margin:0;letter-spacing:-.005em}
+  .mtitle p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2)}
+  .wheel{height:116px}
+  .fl-txt{display:none}
+  .props{height:106px}
+  .pr-pos,.pr{width:44px;height:44px}
+  .pr-pos{pointer-events:auto;cursor:pointer;border-radius:50%}
+  .pr-ic{width:44px;height:44px;transition:background .3s var(--ease),color .3s var(--ease)}
+  .pr-ic svg{width:21px;height:21px}
+  .pr-t{display:none}
+  .pr-pos[aria-pressed="true"] .pr-ic{background:var(--tint-ink);color:var(--tint-on)}
+  .props-cap{display:block;position:absolute;left:0;right:0;bottom:2px;text-align:center;font-size:14px;font-weight:500;min-height:21px}
+  .sheet{left:0;right:0;top:auto;bottom:0;width:auto;max-height:82svh;border-radius:28px 28px 0 0;transform:translateY(40px);
+    padding:28px max(22px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(22px,env(safe-area-inset-right,0px))}
+  .is-sheet .sheet{transform:translateY(0)}
+  .after-in{grid-template-columns:minmax(0,1fr);gap:28px}
+  .after{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (prefers-reduced-motion:reduce){
+  .ing svg,.hint svg .wheel-dot{animation:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9CC764"/><stop offset="1" stop-color="#4A8530"/></linearGradient>
+    <linearGradient id="gLeafLight" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6E08A"/><stop offset="1" stop-color="#6FA544"/></linearGradient>
+    <linearGradient id="gTea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6B4A30"/><stop offset="1" stop-color="#2E2016"/></linearGradient>
+    <radialGradient id="gLime" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#EEF7BE"/><stop offset="1" stop-color="#A6CE55"/></radialGradient>
+    <radialGradient id="gLemon" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#FFF7C4"/><stop offset="1" stop-color="#F2CC36"/></radialGradient>
+    <linearGradient id="gGinger" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EED3A2"/><stop offset="1" stop-color="#C69658"/></linearGradient>
+    <linearGradient id="gTurm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D99A4A"/><stop offset="1" stop-color="#9C5F25"/></linearGradient>
+    <radialGradient id="gTurmCut" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFC23A"/><stop offset="1" stop-color="#E9860E"/></radialGradient>
+    <radialGradient id="gHar" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#C39A5C"/><stop offset="1" stop-color="#64461F"/></radialGradient>
+    <radialGradient id="gAmla" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#F1F5BF"/><stop offset="1" stop-color="#A3BE52"/></radialGradient>
+    <linearGradient id="gRoot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D7B385"/><stop offset="1" stop-color="#A97C4E"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="stage" id="stage">
+  <div class="bg" aria-hidden="true"></div>
+  <div class="bigname" id="bigname" aria-hidden="true"></div>
+  <div class="ing-layer ing-back" id="ingBack" aria-hidden="true"></div>
+  <div class="gl" id="glWrap" aria-hidden="true"><canvas id="gl"></canvas></div>
+  <div class="slot" id="slot" role="img" aria-label="3D-модель бутылки. Потяните, чтобы повернуть.">
+    <div class="fb" id="fb" aria-hidden="true"><div class="fb-in" id="fbIn"></div></div>
+  </div>
+  <div class="ing-layer ing-front" id="ingFront" aria-hidden="true"></div>
+
+  <div class="ui">
+    <header class="head">
+      <a class="logo" href="#top" aria-label="Ayurveda Water">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="22.5" fill="none" stroke="#B08D57" stroke-width="1.2"/>
+          <circle cx="24" cy="24" r="19" fill="none" stroke="#B08D57" stroke-width=".6" opacity=".6"/>
+          <text x="24" y="29.6" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="600" font-size="17" fill="#B08D57" letter-spacing=".5">AV</text>
+        </svg>
+        <span class="logo-t"><b>Ayurveda Water</b><span>SiEnergy</span></span>
+      </a>
+      <p class="tagline">Эликсир на базе родниковой воды и рецептов аюрведических трав</p>
+    </header>
+
+    <div class="mtitle" id="mtitle"><div class="mtitle-row"><h1 id="mName">Relax</h1><div class="count" aria-hidden="true"><b class="js-num">01</b><span>/ 06</span></div></div><p id="mComp">Ашваганда, тулси, лайм</p></div>
+
+    <nav class="wheel" id="wheel" aria-label="Вкусы"></nav>
+    <div class="center" id="center"></div>
+    <div class="props" id="props" role="list" aria-label="Свойства"><p class="props-cap" id="propsCap" aria-live="polite"></p></div>
+
+    <footer class="foot">
+      <div class="hint"><svg viewBox="0 0 16 24" aria-hidden="true"><rect x="1" y="1" width="14" height="22" rx="7"/><line class="wheel-dot" x1="8" y1="6" x2="8" y2="9"/></svg>Листайте вкусы</div>
+      <div class="nav">
+        <button class="ctrl" type="button" id="prev" aria-label="Предыдущий вкус"><svg viewBox="0 0 18 18"><path d="M11 3.5 5.5 9l5.5 5.5"/></svg></button>
+        <div class="count" aria-hidden="true"><b class="js-num">01</b><span>/ 06</span></div>
+        <button class="ctrl" type="button" id="next" aria-label="Следующий вкус"><svg viewBox="0 0 18 18"><path d="m7 3.5 5.5 5.5L7 14.5"/></svg></button>
+      </div>
+      <div class="foot-r"><button class="more js-more" type="button" aria-haspopup="dialog">Подробнее<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10"/></svg></button></div>
+    </footer>
+  </div>
+  <p class="sr" id="live" aria-live="polite"></p>
+</div>
+
+<div class="mbar">
+  <a class="logo" href="#top" aria-label="Ayurveda Water">
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="#B08D57" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="19" fill="none" stroke="#B08D57" stroke-width=".6" opacity=".6"/>
+      <text x="24" y="29.6" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-weight="600" font-size="17" fill="#B08D57" letter-spacing=".5">AV</text>
+    </svg>
+    <span class="logo-t"><b>Ayurveda Water</b><span>SiEnergy</span></span>
+  </a>
+  <button class="more js-more" type="button" aria-haspopup="dialog">Подробнее</button>
+</div>
+
+<section class="after" id="after">
+  <div class="after-in">
+    <h2>Шесть рецептов аюрведы на&nbsp;<em>родниковой воде</em> SiEnergy</h2>
+    <div>
+      <ul class="swatches" id="swatches"></ul>
+      <p>Концепт главного экрана для редизайна si-energy.ru. Прототип, октябрь 2026.</p>
+    </div>
+  </div>
+</section>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shName" tabindex="-1">
+  <button class="sheet-x" type="button" id="sheetX" aria-label="Закрыть"><svg viewBox="0 0 16 16"><path d="M3 3l10 10M13 3 3 13"/></svg></button>
+  <div class="sheet-eyebrow" id="shNum">Вкус 01 из 06</div>
+  <h2 id="shName">Relax</h2>
+  <dl>
+    <div><dt>Состав</dt><dd id="shComp"></dd></div>
+    <div><dt>Применение</dt><dd id="shUse"></dd></div>
+    <div><dt>Свойства</dt><dd><ul id="shProps"></ul></dd></div>
+  </dl>
+  <p class="sheet-note">Эликсир на базе родниковой воды и рецептов аюрведических трав.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
+<script>
+(() => {
+'use strict';
+
+/* ==================================================================
+   ЗАМЕНА БУТЫЛКИ: укажите путь к GLB-модели — и заглушка уйдёт.
+   Требования: ось Y вверх, центр в основании, меши/материалы
+   bottle, liquid, label, cap; у label UV-развёртка под текстуру 2:1.
+   ================================================================== */
+const BOTTLE_GLB = null; // например: 'models/ayurveda-bottle.glb'
+
+/* ---------------- контент ---------------- */
+const FLAVORS = [
+  { id:'relax', name:'Relax', color:'#A68BC9', comp:'Ашваганда, тулси, лайм',
+    props:[['mind','Успокаивает мозг'],['moon','Способствует хорошему сну'],['wave','Снижает уровень стресса'],['shield','Повышает иммунитет'],['bolt','Придаёт силы на долгое время']],
+    use:'Вечером или перед сном, 0,5–1 бутылка', ing:['root','tulsi','lime','tulsi','lime'] },
+  { id:'detox', name:'Detox', color:'#6FBF9A', comp:'Трифала (харитаки), тулси, лайм',
+    props:[['drop','Выводит токсины'],['leaf','Способствует пищеварению'],['cycle','Регулирует метаболизм'],['scale','Нормализует массу тела'],['sun','Повышает жизненную энергию']],
+    use:'3 раза в день по ½ бутылки до еды, курс 21–28 дней', ing:['haritaki','tulsi','lime','amla','lime'] },
+  { id:'wellness', name:'Wellness', color:'#7A5236', comp:'Трифала, тулси',
+    props:[['shield','Повышает иммунитет'],['drop','Выводит токсины'],['sun','Повышает жизненную энергию'],['hourglass','Замедляет старение'],['ph','Щелочная от природы']],
+    use:'3 раза в день по ½ бутылки до еды', ing:['haritaki','amla','tulsi','haritaki','tulsi'] },
+  { id:'beauty', name:'Beauty', color:'#E3A48E', comp:'Ветивер, тулси, лайм',
+    props:[['drops','Питает и увлажняет кожу'],['feather','Уменьшает морщины'],['sparkle','Сияние кожи'],['thermo','Нормализует температуру и pH'],['molecule','Антиоксиданты']],
+    use:'Перед душем, баней, SPA, 1 бутылка', ing:['vetiver','tulsi','lime','vetiver','tulsi'] },
+  { id:'sugar', name:'Sugar Balancing', color:'#2F7FCB', comp:'Яблочный уксус, тулси, мелисса',
+    props:[['cube','Регулирует сахар в крови'],['leaf','Улучшает пищеварение'],['cycle','Регулирует метаболизм'],['scale','Нормализует массу тела'],['sun','Повышает жизненную энергию']],
+    use:'3 раза в день по ½ бутылки до еды', ing:['apple','melissa','tulsi','apple','melissa'] },
+  { id:'tonus', name:'Be In Tonus', color:'#C8302E', comp:'Чёрный чай, куркума, имбирь, лимон',
+    props:[['cup','Снимает похмельный синдром'],['drop','Выводит токсины'],['heart','Улучшает самочувствие'],['cycle','Регулирует метаболизм'],['sun','Повышает жизненную энергию']],
+    use:'1 бутылка вечером и 1 утром натощак', ing:['tea','turmeric','lemon','ginger','tea'] },
+];
+const N = FLAVORS.length;
+const TAGLINE = 'Эликсир на базе родниковой воды и рецептов аюрведических трав';
+
+/* ---------------- иконки свойств (единый линейный набор, 24×24) ---------------- */
+const ICONS = {
+  mind:'<path d="M9 21v-3.1A7.2 7.2 0 1 1 18.7 13.6l1.5 2.7h-2v2.4a2 2 0 0 1-2 2h-2.2"/><path d="M8.3 10.6c.9-1 1.9-1 2.8 0s1.9 1 2.8 0"/>',
+  moon:'<path d="M19.5 14.8A8 8 0 1 1 9.2 4.5a6.4 6.4 0 0 0 10.3 10.3Z"/><path d="M16.5 3.5v3M15 5h3"/>',
+  wave:'<path d="M3 8.5c1.5-1.7 3-1.7 4.5 0s3 1.7 4.5 0 3-1.7 4.5 0 3 1.7 4.5 0"/><path d="M3 12.5c1.5-1.7 3-1.7 4.5 0s3 1.7 4.5 0 3-1.7 4.5 0 3 1.7 4.5 0" opacity=".65"/><path d="M3 16.5c1.5-1.7 3-1.7 4.5 0s3 1.7 4.5 0 3-1.7 4.5 0 3 1.7 4.5 0" opacity=".35"/>',
+  shield:'<path d="M12 3 19 6v5.2c0 4.4-2.9 8.1-7 9.8-4.1-1.7-7-5.4-7-9.8V6Z"/><path d="m9 12 2.1 2.1L15.2 10"/>',
+  bolt:'<circle cx="12" cy="12" r="9"/><path d="M13 6.5 9 13h3l-1 4.5 4-6.5h-3Z"/>',
+  drop:'<path d="M12 3.2s6 6.4 6 10.8a6 6 0 0 1-12 0c0-4.4 6-10.8 6-10.8Z"/><path d="M9.3 14.3A2.7 2.7 0 0 0 12 17"/>',
+  leaf:'<path d="M5 19C5 10.5 10.6 5 20 4c-.8 9.4-6.3 15-15 15Z"/><path d="m5 19 8.5-8.5M10 14h3.4M12.6 11.4V8"/>',
+  cycle:'<path d="M19.8 12a7.8 7.8 0 0 1-13.4 5.4M4.2 12A7.8 7.8 0 0 1 17.6 6.6"/><path d="M17.8 3.4v3.3h-3.3M6.2 20.6v-3.3h3.3"/>',
+  scale:'<path d="M12 4v15.5M7.5 19.5h9M5 7.5h14M12 4.2l.01 0"/><path d="M2.6 13.5a2.4 2.4 0 0 0 4.8 0L5 7.5ZM16.6 13.5a2.4 2.4 0 0 0 4.8 0L19 7.5Z"/>',
+  sun:'<circle cx="12" cy="12" r="3.8"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/>',
+  hourglass:'<path d="M6.5 3h11M6.5 21h11"/><path d="M8 3c0 4.5 8 4.8 8 9s-8 4.5-8 9M16 3c0 4.5-8 4.8-8 9s8 4.5 8 9"/><path d="M10 18.5h4" opacity=".6"/>',
+  ph:'<circle cx="12" cy="12" r="9"/><text x="12" y="15" text-anchor="middle" font-size="8.2">pH</text>',
+  drops:'<path d="M9 4s4.5 4.8 4.5 8.2a4.5 4.5 0 0 1-9 0C4.5 8.8 9 4 9 4Z"/><path d="M16.5 10.5s3.2 3.4 3.2 5.8a3.2 3.2 0 0 1-6.4 0"/>',
+  feather:'<path d="M20 4C11 4 5.5 9.5 5 18.5l1 .5c1.2-3.8 3.6-6.4 7.4-7.9-2.6 1.9-4.3 4.2-5.2 7.6C14.8 18 19.6 13 20 4Z"/><path d="M4 20.5 6 18.5"/>',
+  sparkle:'<path d="m11 3 1.7 5L18 9.8l-5.3 1.8L11 16.6l-1.7-5L4 9.8l5.3-1.8Z"/><path d="m18 14.5.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8Z"/>',
+  thermo:'<path d="M10 4.2a2 2 0 0 1 4 0v9.4a4 4 0 1 1-4 0Z"/><path d="M12 9.5v6.3"/><path d="M16.8 6h2.4M16.8 9h1.6" opacity=".7"/>',
+  molecule:'<circle cx="12" cy="5.6" r="2.3"/><circle cx="5.6" cy="16.6" r="2.3"/><circle cx="18.4" cy="16.6" r="2.3"/><path d="m10.9 7.6-4.1 7M13.1 7.6l4.1 7M7.9 16.6h8.2"/>',
+  cube:'<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>',
+  cup:'<path d="M5 9h11.5v4.2a5.75 5.75 0 0 1-11.5 0Z"/><path d="M16.5 10.2h1.3a2.4 2.4 0 0 1 0 4.8h-1.6"/><path d="M8.3 3.4c-.6.9.6 1.6 0 2.6M11.5 3.4c-.6.9.6 1.6 0 2.6"/>',
+  heart:'<path d="M12 20s-7.6-4.6-7.6-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.6 2.5C19.6 15.4 12 20 12 20Z"/>',
+};
+const icon = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]}</svg>`;
+
+/* ---------------- ингредиенты (стилизованные формы, 120×120) ---------------- */
+function citrus(rind, pith, flesh){
+  let seg='';
+  for(let i=0;i<10;i++){ const a=i/10*Math.PI*2; seg+=`<line x1="60" y1="60" x2="${(60+Math.cos(a)*44).toFixed(1)}" y2="${(60+Math.sin(a)*44).toFixed(1)}"/>`; }
+  return `<circle cx="60" cy="60" r="55" fill="${rind}"/><circle cx="60" cy="60" r="50" fill="${pith}"/><circle cx="60" cy="60" r="46" fill="url(#${flesh})"/>
+  <g stroke="${pith}" stroke-width="3" stroke-linecap="round">${seg}</g><circle cx="60" cy="60" r="5" fill="${pith}"/>
+  <path d="M28 36a40 40 0 0 1 24-16" stroke="#fff" stroke-opacity=".55" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+}
+const ING = {
+  lime: () => citrus('#6E9F2E','#E3EFBB','gLime'),
+  lemon: () => citrus('#E2B71E','#FFF3C6','gLemon'),
+  tulsi: () => `<path d="M60 6C93 28 101 70 60 114 19 70 27 28 60 6Z" fill="url(#gLeaf)"/>
+    <g fill="none" stroke="#E8F3D2" stroke-opacity=".7" stroke-linecap="round"><path d="M60 14Q62 62 60 108" stroke-width="2.4"/>
+    <path d="M60.5 38Q73 33 83 40M60.5 38Q47 33 37 40M61 60Q77 55 89 62M61 60Q44 55 31 62M61 82Q74 79 82 86M61 82Q47 79 38 86" stroke-width="1.6"/></g>
+    <path d="M40 30C46 22 53 16 60 11" stroke="#fff" stroke-opacity=".35" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+  melissa: () => `<path d="M60 10C101 25 106 76 60 112 14 76 19 25 60 10Z" fill="url(#gLeafLight)"/>
+    <path d="M60 10C101 25 106 76 60 112 14 76 19 25 60 10Z" fill="none" stroke="#5E923A" stroke-width="3" stroke-dasharray="2.5 4.5" stroke-linecap="round"/>
+    <g fill="none" stroke="#F1F8DE" stroke-opacity=".8" stroke-linecap="round" stroke-width="1.6"><path d="M60 18Q61 62 60 106" stroke-width="2.2"/>
+    <path d="M60 40Q75 36 88 44M60 40Q45 36 32 44M60 62Q78 58 92 66M60 62Q42 58 28 66M60 84Q73 82 82 90M60 84Q47 82 38 90"/></g>`,
+  root: () => `<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M57 6C66 28 51 46 60 66 66 82 57 98 64 114" stroke="url(#gRoot)" stroke-width="13"/>
+    <path d="M60 40C74 47 85 51 98 68" stroke="url(#gRoot)" stroke-width="6.5"/>
+    <path d="M58 62C44 70 35 81 28 100" stroke="url(#gRoot)" stroke-width="5.5"/>
+    <path d="M63 86C72 93 75 101 82 111" stroke="url(#gRoot)" stroke-width="3.5"/>
+    <path d="M90 58l8-4M36 86l-9-2M46 74l-7 6M79 98l7-1" stroke="#B88C5E" stroke-width="1.6"/>
+    <path d="M55 18c4 2 4 6 1 9M57 44c4 3 3 7 0 9M58 72c4 2 4 6 1 9" stroke="#8E6640" stroke-width="2" stroke-opacity=".55"/>
+    <path d="M54 10c2 8-1 14-1 20" stroke="#fff" stroke-opacity=".35" stroke-width="2.5"/></g>`,
+  ginger: () => `<g stroke="#A97B44" stroke-width="2" fill="url(#gGinger)">
+    <ellipse cx="54" cy="72" rx="36" ry="22" transform="rotate(-18 54 72)"/><ellipse cx="84" cy="42" rx="17" ry="13" transform="rotate(-30 84 42)"/>
+    <ellipse cx="28" cy="44" rx="13" ry="18" transform="rotate(20 28 44)"/><ellipse cx="60" cy="44" rx="11" ry="15"/></g>
+    <g fill="none" stroke="#A97B44" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"><path d="M34 66c3 6 3 12 0 16M56 58c3 7 3 14 0 20M76 54c3 6 3 12 0 17"/></g>`,
+  turmeric: () => `<g fill="url(#gTurm)"><rect x="18" y="40" width="70" height="24" rx="12" transform="rotate(-24 53 52)"/><rect x="44" y="20" width="18" height="44" rx="9" transform="rotate(16 53 42)"/></g>
+    <g fill="none" stroke="#7B4719" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"><path d="M36 50c2 5 2 10 0 13M56 42c2 5 2 10 0 13"/></g>
+    <circle cx="80" cy="78" r="24" fill="#B87430"/><circle cx="80" cy="78" r="20" fill="url(#gTurmCut)"/><circle cx="80" cy="78" r="12" fill="none" stroke="#F7B12A" stroke-width="1.6" stroke-opacity=".8"/>`,
+  haritaki: () => `<path d="M60 12c3-4 6-6 10-7" stroke="#5A3F1C" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="60" cy="62" rx="33" ry="48" fill="url(#gHar)"/>
+    <g fill="none" stroke="#4B3416" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"><path d="M60 15Q42 62 60 109M60 15Q78 62 60 109M60 15Q29 62 44 104M60 15Q91 62 76 104"/></g>
+    <path d="M44 32c-5 10-6 20-5 30" stroke="#fff" stroke-opacity=".3" stroke-width="4" fill="none" stroke-linecap="round"/>`,
+  amla: () => `<circle cx="60" cy="62" r="44" fill="url(#gAmla)"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"><path d="M60 18Q40 62 60 106M60 18Q80 62 60 106M60 18Q22 62 60 106M60 18Q98 62 60 106"/></g>
+    <path d="M60 18c1-5 4-9 8-11" stroke="#6B7A2E" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+  vetiver: () => `<g fill="none" stroke-linecap="round"><path d="M60 114C56 80 40 46 22 10" stroke="#A39352" stroke-width="3"/><path d="M60 114C58 76 54 40 48 4" stroke="#BCAA62" stroke-width="3"/>
+    <path d="M60 114C62 78 68 42 76 6" stroke="#9A8C4C" stroke-width="3"/><path d="M60 114C64 84 82 52 102 20" stroke="#B3A35C" stroke-width="3"/>
+    <path d="M60 114C59 86 62 58 62 28" stroke="#8C8044" stroke-width="2.4"/><path d="M60 114C54 90 44 70 32 52" stroke="#C4B46E" stroke-width="2.2"/></g>
+    <rect x="49" y="84" width="22" height="9" rx="3" fill="#B08D57"/>`,
+  apple: () => `<path d="M60 14C80 5 108 19 106 53 104 89 82 113 60 108 38 113 16 89 14 53 12 19 40 5 60 14Z" fill="#CF3B33"/>
+    <path d="M60 20C78 12 100 24 99 54 98 85 79 104 60 101 41 104 22 85 21 54 20 24 42 12 60 20Z" fill="#FBF0D6"/>
+    <path d="M60 36c10 6 14 16 12 26S64 80 60 84c-4-4-10-12-12-22s2-20 12-26Z" fill="none" stroke="#E2CFA6" stroke-width="2"/>
+    <g fill="#5C3A1E"><ellipse cx="56" cy="56" rx="2.6" ry="5.2" transform="rotate(-18 56 56)"/><ellipse cx="64" cy="56" rx="2.6" ry="5.2" transform="rotate(18 64 56)"/><ellipse cx="60" cy="67" rx="2.6" ry="5.2"/></g>
+    <path d="M60 16c0-6 2-10 6-12" stroke="#5C3A1E" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+  tea: () => `<g><path d="M38 20C62 26 72 52 56 84 30 72 22 44 38 20Z" fill="url(#gTea)"/><path d="M40 26Q50 52 54 78" stroke="#8A6448" stroke-width="1.6" fill="none"/></g>
+    <g transform="rotate(38 74 70)"><path d="M74 34C98 42 104 70 86 100 62 88 56 58 74 34Z" fill="url(#gTea)"/><path d="M76 40Q84 66 86 94" stroke="#8A6448" stroke-width="1.6" fill="none"/></g>
+    <path d="M40 92c6-10 18-14 26-8" stroke="#3A281B" stroke-width="5" fill="none" stroke-linecap="round"/>`,
+};
+const ingSvg = k => `<svg viewBox="0 0 120 120">${ING[k]()}</svg>`;
+
+/* позиции ингредиентов вокруг бутылки: x,y в долях слота, размер в долях высоты слота, глубина (−1 дальше, +1 ближе) */
+const SLOTS_D = [
+  { x:.08, y:.24, s:.15, z:-.7, r:-24 },
+  { x:.90, y:.34, s:.14, z: .8, r: 30 },
+  { x:.14, y:.66, s:.17, z: .9, r: 12 },
+  { x:.86, y:.74, s:.11, z:-.5, r:-40 },
+  { x:.70, y:.10, s:.09, z:-.95, r: 60 },
+];
+const SLOTS_M = [
+  { x:.12, y:.20, s:.17, z:-.7, r:-24 },
+  { x:.86, y:.30, s:.16, z: .8, r: 30 },
+  { x:.16, y:.70, s:.19, z: .9, r: 12 },
+  { x:.84, y:.78, s:.14, z:-.5, r:-40 },
+  { x:.66, y:.06, s:.11, z:-.95, r: 60 },
+];
+
+/* ---------------- утилиты ---------------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+const hexRgb = h => [1,3,5].map(i => parseInt(h.slice(i,i+2),16));
+const mix = (a,b,t) => a.map((v,i) => Math.round(v + (b[i]-v)*t));
+const rgb = c => `rgb(${c[0]},${c[1]},${c[2]})`;
+const CREAM = [246,241,234], INK = [31,29,26];
+const lum = c => { const l = c.map(v => { v/=255; return v<=.03928 ? v/12.92 : Math.pow((v+.055)/1.055, 2.4); }); return .2126*l[0]+.7152*l[1]+.0722*l[2]; };
+const inkOf = c => { const L = lum(c); return mix(c, INK, L>.35 ? .5 : L>.18 ? .32 : .1); };
+const wrapD = d => ((d % N) + N*1.5) % N - N/2;   // в диапазон [-3, 3)
+const pad = n => String(n).padStart(2,'0');
+
+const MQ_MOBILE = '(max-width: 760px), (orientation: portrait) and (max-width: 1100px)';
+const mqM = matchMedia(MQ_MOBILE), mqR = matchMedia('(prefers-reduced-motion: reduce)');
+let isMobile = mqM.matches, reduce = mqR.matches;
+
+const root = document.documentElement;
+const stage = $('#stage'), slot = $('#slot'), canvas = $('#gl'), glWrap = $('#glWrap'), fb = $('#fb'), fbIn = $('#fbIn');
+const bigname = $('#bigname'), ingBack = $('#ingBack'), ingFront = $('#ingFront');
+const wheelEl = $('#wheel'), propsEl = $('#props'), centerEl = $('#center'), capEl = $('#propsCap');
+const live = $('#live');
+
+let current = 0, busy = false, pending = null, selProp = 0;
+
+/* ---------------- цвет вкуса ---------------- */
+const tint = { r:0, g:0, b:0 };
+function applyTint(){
+  const c = [tint.r, tint.g, tint.b].map(Math.round), L = lum(c), dark = L < .2;
+  const s = root.style;
+  s.setProperty('--tint', rgb(c));
+  s.setProperty('--tint-soft', rgb(mix(CREAM, c, dark ? .3 : .44)));
+  s.setProperty('--tint-faint', rgb(mix(CREAM, c, dark ? .1 : .15)));
+  s.setProperty('--tint-name', rgb(mix(CREAM, c, dark ? .24 : .34)));
+  const ink = inkOf(c);
+  s.setProperty('--tint-ink', rgb(ink));
+  s.setProperty('--tint-on', lum(ink) > .42 ? '#1F1D1A' : '#ffffff');
+}
+function setTint(hex){ const c = hexRgb(hex); tint.r=c[0]; tint.g=c[1]; tint.b=c[2]; applyTint(); }
+
+/* ---------------- колесо вкусов ---------------- */
+const wheel = { pos: 0 };
+const flBtns = FLAVORS.map((f,i) => {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'fl'; b.style.setProperty('--c', f.color);
+  b.setAttribute('aria-label', `${f.name}: ${f.comp}`);
+  b.innerHTML = `<span class="dot"><i class="halo"></i><i class="ring"></i><i class="pip"></i><i class="fill"></i></span>
+    <span class="fl-txt"><span class="fl-num">${pad(i+1)}</span><span class="fl-name">${f.name}</span><span class="fl-comp">${f.comp}</span></span>`;
+  b.addEventListener('click', () => go(i));
+  wheelEl.appendChild(b);
+  return b;
+});
+function layoutWheel(){
+  const W = wheelEl.clientWidth, H = wheelEl.clientHeight, half = 28;
+  flBtns.forEach((b,i) => {
+    const d = wrapD(i - wheel.pos), ad = Math.abs(d);
+    const t = clamp(1 - ad, 0, 1);
+    let x, y;
+    if (isMobile){
+      const R = Math.min(W*.44, 210), step = .44;
+      const th = d*step;
+      x = W/2 + R*Math.sin(th); y = 34 + R*(1 - Math.cos(th))*.72;
+    } else {
+      const R = H*.46, step = .4, apex = Math.min(W*.3, 150);
+      const th = d*step;
+      x = apex - R + R*Math.cos(th); y = H/2 + R*Math.sin(th);
+    }
+    const vis = clamp(1 - (ad - 2.05)/.6, 0, 1);
+    b.style.transform = `translate3d(${(x-half).toFixed(1)}px,${(y-half).toFixed(1)}px,0)`;
+    b.style.opacity = vis.toFixed(3);
+    b.style.visibility = vis < .02 ? 'hidden' : 'visible';
+    b.style.setProperty('--t', t.toFixed(3));
+    b.style.setProperty('--s', (.62 + .38*t).toFixed(3));
+    b.style.zIndex = String(10 - Math.round(ad*2));
+  });
+}
+
+/* ---------------- свойства ---------------- */
+const prPos = [0,1,2,3,4].map(j => {
+  const p = document.createElement('div');
+  p.className = 'pr-pos'; p.setAttribute('role','listitem');
+  p.innerHTML = `<div class="pr"><span class="pr-ic"></span><span class="pr-t"></span></div>`;
+  propsEl.insertBefore(p, capEl);
+  return p;
+});
+// на телефоне иконки — кнопки (тап показывает подпись); на десктопе — просто строки
+function setupPropsInteractivity(){
+  prPos.forEach((p,j) => {
+    if (isMobile){
+      p.setAttribute('tabindex','0'); p.setAttribute('role','button');
+      p.onclick = () => { selProp = j; renderPropSel(); };
+      p.onkeydown = e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); p.onclick(); } };
+    } else {
+      p.removeAttribute('tabindex'); p.setAttribute('role','listitem'); p.removeAttribute('aria-pressed');
+      p.onclick = null; p.onkeydown = null;
+    }
+  });
+}
+const prInner = prPos.map(p => $('.pr', p));
+function fillProps(f){
+  prPos.forEach((p,j) => {
+    const [ic, label] = f.props[j];
+    $('.pr-ic', p).innerHTML = icon(ic);
+    $('.pr-t', p).textContent = label;
+    p.setAttribute('aria-label', label);
+  });
+  renderPropSel();
+}
+function renderPropSel(){
+  const f = FLAVORS[current];
+  capEl.textContent = isMobile ? f.props[selProp][1] : '';
+  prPos.forEach((p,j) => isMobile ? p.setAttribute('aria-pressed', String(j===selProp)) : p.removeAttribute('aria-pressed'));
+}
+function layoutProps(){
+  const W = propsEl.clientWidth, H = propsEl.clientHeight;
+  prPos.forEach((p,j) => {
+    let x, y, half;
+    if (isMobile){
+      half = 22; const gap = Math.min(W*.19, 76);
+      x = W/2 + (j-2)*gap; y = 24 + (4 - (j-2)**2) * 2.6;
+    } else {
+      half = 26; const R = H*.44, step = .36, apex = Math.max(W*.14, 40);
+      const th = (j-2)*step;
+      x = apex + R - R*Math.cos(th); y = H/2 + R*Math.sin(th);
+    }
+    p.style.transform = `translate3d(${(x-half).toFixed(1)}px,${(y-half).toFixed(1)}px,0)`;
+  });
+}
+
+/* ---------------- крупное название на фоне ---------------- */
+function setBigName(f){
+  const words = f.name.toUpperCase().split(' ');
+  const lines = words.length === 1 ? words : words.length === 2 ? words : [words.slice(0,2).join(' '), words.slice(2).join(' ')];
+  bigname.innerHTML = lines.map(l => `<span class="ln">${[...l].map(ch => `<span class="ch">${ch===' ' ? '&nbsp;' : ch}</span>`).join('')}</span>`).join('');
+  fitBigName(lines.length);
+}
+function fitBigName(nLines){
+  nLines = nLines || bigname.children.length;
+  if (!nLines) return;
+  const W = stage.clientWidth, sr = slotRect;
+  bigname.style.fontSize = '100px';
+  let maxW = 0; [...bigname.children].forEach(l => { maxW = Math.max(maxW, l.scrollWidth); });
+  const targetW = isMobile ? W*.94 : Math.min(W*.6, 1200);
+  const maxH = (isMobile ? sr.h*.62 : sr.h*.62) / (nLines*.8);
+  const size = Math.min(100*targetW/Math.max(maxW,1), maxH);
+  bigname.style.fontSize = size.toFixed(1)+'px';
+  bigname.style.top = (sr.y + sr.h*.5).toFixed(1)+'px';
+}
+const chars = () => $$('.ch', bigname);
+
+/* ---------------- ингредиенты ---------------- */
+const ingEls = [0,1,2,3,4].map(k => {
+  const el = document.createElement('div'); el.className = 'ing';
+  el.innerHTML = '<span class="ing-fly"></span>';
+  el.style.setProperty('--fd', (6 + k*1.3).toFixed(1)+'s');
+  el.style.setProperty('--fdl', (-k*1.7).toFixed(1)+'s');
+  return el;
+});
+const ingFly = ingEls.map(el => $('.ing-fly', el));
+function fillIngs(f){ ingFly.forEach((fl,k) => { fl.innerHTML = ingSvg(f.ing[k]); }); }
+function layoutIngs(){
+  const S = isMobile ? SLOTS_M : SLOTS_D, sr = slotRect;
+  ingEls.forEach((el,k) => {
+    const s = S[k], size = sr.h*s.s;
+    el.dataset.z = s.z;
+    el.style.width = el.style.height = size.toFixed(1)+'px';
+    el.style.setProperty('--r0', s.r+'deg'); el.style.setProperty('--r1', (s.r+10)+'deg');
+    el._bx = sr.x + sr.w*s.x - size/2; el._by = sr.y + sr.h*s.y - size/2;
+    el.classList.toggle('is-far', s.z < -.8 && !isMobile);
+    (s.z < 0 ? ingBack : ingFront).appendChild(el);
+  });
+}
+
+/* ---------------- раскладка слота бутылки ---------------- */
+let slotRect = { x:0, y:0, w:10, h:10 };
+function layout(){
+  const st = stage.getBoundingClientRect(), c = centerEl.getBoundingClientRect();
+  let x = c.left - st.left, y = c.top - st.top, w = c.width, h = c.height;
+  if (!isMobile){ y += h*.02; h *= .98; }
+  slotRect = { x, y, w, h };
+  Object.assign(slot.style, { transform:`translate(${x}px,${y}px)`, width:w+'px', height:h+'px' });
+  layoutWheel(); layoutProps(); layoutIngs(); fitBigName();
+  if (three) three.resize(stage.clientWidth, stage.clientHeight, slotRect);
+}
+
+/* ---------------- курсор ---------------- */
+const ptr = { x:0, y:0, sx:0, sy:0 };
+addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse') return;
+  ptr.x = (e.clientX / innerWidth)*2 - 1; ptr.y = (e.clientY / innerHeight)*2 - 1;
+}, { passive:true });
+
+/* ==================================================================
+   3D: процедурная бутылка (Three.js)
+   ================================================================== */
+let three = null;
+const spin = { a: 0, lift: 0 };
+
+function hasWebGL(){ try { const c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl2') || c.getContext('webgl'))); } catch(e){ return false; } }
+
+const LABEL_R = .648, LABEL_H = 1.3, LABEL_Y = 1.15;
+const LABEL_K = (2*Math.PI*LABEL_R/LABEL_H) / 2;   // поправка: физическая этикетка шире развёртки 2:1
+
+function drawLabel(f, cv, flipY){
+  const W = cv.width, H = cv.height, s = W/2048, ctx = cv.getContext('2d');
+  const LW = 2048*LABEL_K;
+  ctx.setTransform(s/LABEL_K, 0, 0, s, 0, 0);
+  const col = hexRgb(f.color), ink = inkOf(col), L = lum(col);
+  const disp = '"Cormorant Garamond", Georgia, serif', body = 'Manrope, "Segoe UI", sans-serif';
+  // основа
+  ctx.fillStyle = '#FBF8F2'; ctx.fillRect(0, 0, LW, 1024);
+  const g = ctx.createLinearGradient(0, 0, 0, 1024);
+  g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(1, `rgba(${col},.10)`);
+  ctx.fillStyle = g; ctx.fillRect(0, 0, LW, 1024);
+  // цветная полоса и золотые линии
+  ctx.fillStyle = f.color; ctx.fillRect(0, 812, LW, 212);
+  ctx.fillStyle = '#B08D57'; ctx.fillRect(0, 54, LW, 4); ctx.fillRect(0, 790, LW, 4);
+  // орнамент-мандалы по бокам
+  const mandala = (cx, cy, R) => {
+    ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = `rgba(${col},.32)`; ctx.lineWidth = 3;
+    for (let r = R*.25; r <= R; r += R*.25){ ctx.beginPath(); ctx.arc(0,0,r,0,Math.PI*2); ctx.stroke(); }
+    for (let i=0;i<16;i++){ ctx.rotate(Math.PI/8); ctx.beginPath(); ctx.ellipse(0, -R*.62, R*.12, R*.36, 0, 0, Math.PI*2); ctx.stroke(); }
+    ctx.restore();
+  };
+  mandala(LW*.25, 420, 250); mandala(LW*.75, 420, 250);
+  const spaced = (t, x, y, sp, align='center') => {
+    const chs = [...t]; let w = 0; chs.forEach(ch => w += ctx.measureText(ch).width + sp); w -= sp;
+    let cx = align === 'center' ? x - w/2 : x; ctx.textAlign = 'left';
+    chs.forEach(ch => { ctx.fillText(ch, cx, y); cx += ctx.measureText(ch).width + sp; });
+  };
+  // лицевая сторона
+  const cx = LW/2;
+  ctx.fillStyle = '#FBF8F2'; ctx.fillRect(cx-560, 64, 1120, 722);
+  ctx.strokeStyle = '#B08D57'; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(cx, 168, 64, 0, Math.PI*2); ctx.stroke();
+  ctx.lineWidth = 2; ctx.globalAlpha = .6; ctx.beginPath(); ctx.arc(cx, 168, 54, 0, Math.PI*2); ctx.stroke(); ctx.globalAlpha = 1;
+  ctx.fillStyle = '#B08D57'; ctx.textBaseline = 'alphabetic'; ctx.font = `600 62px ${disp}`; ctx.textAlign = 'center'; ctx.fillText('AV', cx, 189);
+  ctx.fillStyle = '#1F1D1A'; ctx.font = `600 30px ${body}`; spaced('AYURVEDA WATER', cx, 300, 12);
+  // название вкуса
+  ctx.fillStyle = rgb(ink);
+  const words = f.name.split(' ');
+  let size = 200; ctx.font = `600 ${size}px ${disp}`;
+  const maxW = 1000;
+  if (ctx.measureText(f.name).width <= maxW || words.length === 1){
+    while (ctx.measureText(f.name).width > maxW) { size -= 6; ctx.font = `600 ${size}px ${disp}`; }
+    ctx.textAlign = 'center'; ctx.fillText(f.name, cx, 520);
+  } else {
+    const l1 = words.slice(0, Math.ceil(words.length/2)).join(' '), l2 = words.slice(Math.ceil(words.length/2)).join(' ');
+    size = 150; ctx.font = `600 ${size}px ${disp}`;
+    while (Math.max(ctx.measureText(l1).width, ctx.measureText(l2).width) > maxW) { size -= 6; ctx.font = `600 ${size}px ${disp}`; }
+    ctx.textAlign = 'center'; ctx.fillText(l1, cx, 450); ctx.fillText(l2, cx, 450 + size*.86);
+  }
+  ctx.fillStyle = '#5E574D'; ctx.font = `italic 500 60px ${disp}`; ctx.textAlign = 'center'; ctx.fillText('аюрведический эликсир', cx, 640);
+  ctx.fillStyle = '#7A7268'; ctx.font = `600 26px ${body}`; spaced(f.comp.replace(/\s*\(.*?\)/g,'').toUpperCase().split(', ').join('  ·  '), cx, 722, 4);
+  // полоса: подпись
+  ctx.fillStyle = L > .42 ? '#1F1D1A' : '#FFFFFF'; ctx.font = `600 30px ${body}`;
+  spaced('ЭЛИКСИР НА РОДНИКОВОЙ ВОДЕ  ·  0,5 Л', cx, 930, 7);
+  // тыльная сторона (на шве, x = 0 и x = LW)
+  const back = bx => {
+    ctx.save();
+    ctx.fillStyle = '#FBF8F2'; ctx.fillRect(bx-470, 64, 940, 722);
+    ctx.fillStyle = '#1F1D1A'; ctx.font = `italic 500 50px ${disp}`; ctx.textAlign = 'center';
+    ctx.fillText('Эликсир на базе родниковой воды', bx, 190); ctx.fillText('и рецептов аюрведических трав', bx, 250);
+    ctx.font = `600 22px ${body}`; ctx.fillStyle = '#8D857A'; spaced('СОСТАВ', bx, 350, 6);
+    ctx.font = `500 32px ${body}`; ctx.fillStyle = '#1F1D1A'; ctx.textAlign='center'; ctx.fillText(f.comp, bx, 396);
+    ctx.font = `600 22px ${body}`; ctx.fillStyle = '#8D857A'; spaced('ПРИМЕНЕНИЕ', bx, 470, 6);
+    ctx.font = `500 30px ${body}`; ctx.fillStyle = '#1F1D1A'; ctx.textAlign='center';
+    const u = f.use; if (ctx.measureText(u).width > 860){ const i = u.lastIndexOf(',', Math.floor(u.length*.6)); ctx.fillText(u.slice(0,i+1), bx, 514); ctx.fillText(u.slice(i+2), bx, 554); } else ctx.fillText(u, bx, 514);
+    // штрихкод
+    let x = bx - 150; ctx.fillStyle = '#1F1D1A';
+    for (let i=0;i<46;i++){ const w = [2,4,6,3][(i*7+f.id.length)%4]; ctx.fillRect(x, 620, w, 110); x += w + [3,5,4][(i*3)%3]; }
+    ctx.font = `500 20px ${body}`; ctx.textAlign='center'; ctx.fillText('4 627 0' + (10+f.id.length) + ' 51 23' + f.name.length, bx, 760);
+    ctx.restore();
+  };
+  back(0); back(LW);
+}
+
+function initThree(){
+  const T = window.THREE;
+  const low = isMobile && ((navigator.hardwareConcurrency || 4) <= 4 || (navigator.deviceMemory || 4) <= 3);
+  const renderer = new T.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:'high-performance' });
+  let dprCap = low ? 1.5 : 2;
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, dprCap));
+  renderer.setClearColor(0x000000, 0);
+  renderer.outputEncoding = T.sRGBEncoding;
+  renderer.toneMapping = T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = .96;
+
+  const scene = new T.Scene();
+  const camera = new T.PerspectiveCamera(24, 1, .1, 60);
+  const pmrem = new T.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new T.RoomEnvironment(), .04).texture;
+
+  scene.add(new T.HemisphereLight(0xffffff, 0xe6d9c6, .55));
+  const key = new T.DirectionalLight(0xfff1de, 1.5); key.position.set(-3, 5, 4); scene.add(key);
+  const rim = new T.DirectionalLight(0xffffff, 1.3); rim.position.set(3.5, 2, -4); scene.add(rim);
+
+  const rootG = new T.Group(), tiltG = new T.Group(), spinG = new T.Group(), model = new T.Group();
+  scene.add(rootG); rootG.add(tiltG); tiltG.add(spinG); spinG.add(model);
+  model.position.y = -1.5;
+
+  // профиль бутылки (радиус, высота)
+  const prof = [[0,.02],[.42,0],[.57,.025],[.632,.11],[.642,.3],[.642,1.84],[.628,1.98],[.57,2.15],[.45,2.33],[.33,2.47],[.262,2.57],[.252,2.66]];
+  const curve = new T.SplineCurve(prof.map(p => new T.Vector2(p[0], p[1])));
+  const bodyPts = curve.getPoints(110);
+  const bodyGeo = new T.LatheGeometry(bodyPts, 72);
+  const liqProf = [[0,.05],[.52,.045],[.6,.12],[.615,.3],[.615,1.84],[.6,1.97],[.54,2.13],[.47,2.24],[0,2.245]];
+  const liqGeo = new T.LatheGeometry(new T.SplineCurve(liqProf.slice(0,-1).map(p => new T.Vector2(p[0],p[1]))).getPoints(80).concat([new T.Vector2(0,2.245)]), 64);
+
+  const glassFull = () => new T.MeshPhysicalMaterial({ color:0xffffff, metalness:0, roughness:.05, transparent:true, opacity:.16,
+    clearcoat:1, clearcoatRoughness:.04, envMapIntensity:1.5, depthWrite:false, side:T.FrontSide });
+  const glassLite = () => new T.MeshStandardMaterial({ color:0xffffff, metalness:.1, roughness:.08, transparent:true, opacity:.24, envMapIntensity:1.4, depthWrite:false });
+  const bodyMat = low ? glassLite() : glassFull();
+  const bodyBack = new T.MeshStandardMaterial({ color:0xffffff, roughness:.1, metalness:0, transparent:true, opacity:.12, envMapIntensity:1, depthWrite:false, side:T.BackSide });
+  const liqMat = new T.MeshPhysicalMaterial({ color:new T.Color(FLAVORS[0].color).convertSRGBToLinear(), roughness:.32, metalness:0,
+    transparent:true, opacity:.96, clearcoat:.2, envMapIntensity:.32, depthWrite:false });
+  const capMat = new T.MeshPhysicalMaterial({ color:0x0c0b0b, roughness:.42, metalness:0, clearcoat:.35, clearcoatRoughness:.4, envMapIntensity:.45 });
+
+  // насечка крышки — карта рельефа
+  const kc = document.createElement('canvas'); kc.width = 512; kc.height = 8; const kx = kc.getContext('2d');
+  for (let i=0;i<96;i++){ kx.fillStyle = i%2 ? '#000' : '#fff'; kx.fillRect(i*512/96, 0, 512/96, 8); }
+  const knurl = new T.CanvasTexture(kc); capMat.bumpMap = knurl; capMat.bumpScale = .004;
+
+  const back = new T.Mesh(bodyGeo, bodyBack); back.renderOrder = 1;
+  const liquid = new T.Mesh(liqGeo, liqMat); liquid.renderOrder = 2;
+  const front = new T.Mesh(bodyGeo, bodyMat); front.renderOrder = 4;
+
+  // этикетки: развёртка 2048×1024 (на телефоне 1024×512)
+  const TW = isMobile ? 1024 : 2048;
+  const maxAniso = renderer.capabilities.getMaxAnisotropy();
+  const labelTex = FLAVORS.map(f => {
+    const cv = document.createElement('canvas'); cv.width = TW; cv.height = TW/2; drawLabel(f, cv);
+    const t = new T.CanvasTexture(cv); t.encoding = T.sRGBEncoding; t.anisotropy = Math.min(8, maxAniso); return t;
+  });
+  const labelMat = new T.MeshStandardMaterial({ map:labelTex[0], roughness:.5, metalness:0, envMapIntensity:.6 });
+  const label = new T.Mesh(new T.CylinderGeometry(LABEL_R, LABEL_R, LABEL_H, 96, 1, true, Math.PI, Math.PI*2), labelMat);
+  label.position.y = LABEL_Y; label.renderOrder = 3;
+
+  const capProf = [[0,2.62],[.272,2.62],[.282,2.64],[.282,2.95],[.27,2.985],[.24,2.995],[0,2.995]];
+  const cap = new T.Mesh(new T.LatheGeometry(capProf.map(p => new T.Vector2(p[0],p[1])), 64), capMat);
+  const ring = new T.Mesh(new T.TorusGeometry(.285, .018, 12, 64), bodyMat); ring.rotation.x = Math.PI/2; ring.position.y = 2.565; ring.renderOrder = 4;
+
+  const proc = new T.Group(); proc.add(back, liquid, label, front, cap, ring); model.add(proc);
+
+  // мягкая тень под бутылкой
+  const sc = document.createElement('canvas'); sc.width = sc.height = 128; const sx = sc.getContext('2d');
+  const rg = sx.createRadialGradient(64,64,0,64,64,64); rg.addColorStop(0,'rgba(60,44,30,.45)'); rg.addColorStop(.45,'rgba(60,44,30,.16)'); rg.addColorStop(1,'rgba(60,44,30,0)');
+  sx.fillStyle = rg; sx.fillRect(0,0,128,128);
+  const shadow = new T.Mesh(new T.PlaneGeometry(2.6, 2.6), new T.MeshBasicMaterial({ map:new T.CanvasTexture(sc), transparent:true, depthWrite:false, opacity:.85 }));
+  shadow.rotation.x = -Math.PI/2; shadow.position.y = -1.505; rootG.add(shadow);
+
+  // прогреваем текстуры, чтобы смена этикетки не дёргала кадр
+  labelTex.forEach(t => renderer.initTexture && renderer.initTexture(t));
+
+  // холст на весь экран (тень и парящая крышка не обрезаются), бутылка вписана в центральную зону
+  const BASE_FOV = 24;
+  let cw = 10, ch = 10, area = { x:0, y:0, w:10, h:10 };
+  function resize(CW, CH, r){
+    cw = Math.max(1, CW); ch = Math.max(1, CH); area = r || area;
+    renderer.setSize(cw, ch, false);
+    const w = Math.max(1, area.w), h = Math.max(1, area.h);
+    const fill = isMobile ? .92 : .84, vh = 3.05/fill, tan = Math.tan(T.MathUtils.degToRad(BASE_FOV/2));
+    let d = vh/(2*tan);
+    const vw = vh*w/h; if (vw < 1.4/.72) d *= (1.4/.72)/vw;
+    const cx = area.x + w/2, cy = area.y + h/2;
+    const FW = 2*Math.max(cx, cw - cx), FH = 2*Math.max(cy, ch - cy);
+    camera.fov = T.MathUtils.radToDeg(2*Math.atan(tan*FH/h));
+    camera.position.set(0, .38, d); camera.lookAt(0, isMobile ? -.12 : -.04, 0);
+    camera.setViewOffset(FW, FH, FW/2 - cx, FH/2 - cy, cw, ch);
+  }
+
+  function setFlavor(i, instant){
+    labelMat.map = labelTex[i]; labelMat.needsUpdate = true;
+    const c = new T.Color(FLAVORS[i].color).convertSRGBToLinear();
+    if (instant) liqMat.color.copy(c);
+    else gsap.to(liqMat.color, { r:c.r, g:c.g, b:c.b, duration:.35, ease:'power2.out' });
+  }
+  function redrawLabels(){ labelTex.forEach((t,i) => { drawLabel(FLAVORS[i], t.image); t.needsUpdate = true; }); }
+
+  // замена на GLB-модель одной строкой (BOTTLE_GLB вверху)
+  function loadGLB(url){
+    const s = document.createElement('script'); s.src = 'https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js';
+    s.onload = () => new T.GLTFLoader().load(url, gltf => {
+      const m = gltf.scene, box = new T.Box3().setFromObject(m), size = box.getSize(new T.Vector3());
+      const k = 2.995 / size.y; m.scale.setScalar(k); m.position.y = -box.min.y*k;
+      labelTex.forEach(t => { t.flipY = false; t.needsUpdate = true; });
+      m.traverse(o => {
+        if (!o.isMesh) return; const n = (o.name + ' ' + (o.material && o.material.name)).toLowerCase();
+        if (n.includes('label')) { o.material = labelMat; o.renderOrder = 3; }
+        else if (n.includes('liquid')) { o.material = liqMat; o.renderOrder = 2; }
+        else if (n.includes('bottle')) { o.material = bodyMat; o.renderOrder = 4; }
+      });
+      model.remove(proc); model.add(m);
+    }, undefined, err => console.warn('GLB не загрузилась, остаётся заглушка', err));
+    document.head.appendChild(s);
+  }
+  if (BOTTLE_GLB) loadGLB(BOTTLE_GLB);
+
+  // цикл рендера: пауза вне экрана и во фоновой вкладке
+  let visible = true, raf = 0, last = performance.now(), frames = [], downgraded = low;
+  const tl = { x:0, z:0, ry:0 };
+  const clock = new T.Clock();
+  function frame(now){
+    raf = requestAnimationFrame(frame);
+    const dt = now - last; last = now;
+    if (!downgraded && frames.length < 120){ frames.push(dt); if (frames.length === 120){ const sorted = frames.slice(20).sort((a,b)=>a-b); if (sorted[sorted.length>>1] > 24){ downgraded = true; renderer.setPixelRatio(Math.min(devicePixelRatio||1, 1.25)); front.material = ring.material = glassLite(); resize(cw, ch); } } }
+    const t = clock.getElapsedTime();
+    const k = reduce ? 0 : 1;
+    const mx = isMobile ? 0 : ptr.sx, my = isMobile ? 0 : ptr.sy;
+    tl.x += ((my*.16 + Math.sin(t*.7)*.02*k) - tl.x)*.06;
+    tl.z += ((-mx*.17 + Math.sin(t*.55)*.035*k) - tl.z)*.06;
+    tl.ry += ((mx*.22) - tl.ry)*.06;
+    tiltG.rotation.x = tl.x; tiltG.rotation.z = tl.z;
+    spinG.rotation.y = spin.a + tl.ry;
+    tiltG.position.y = (Math.sin(t*.9)*.035*k) + spin.lift*.16;
+    shadow.scale.setScalar(1 - spin.lift*.12 - Math.sin(t*.9)*.02*k);
+    shadow.material.opacity = .85 - spin.lift*.25;
+    renderer.render(scene, camera);
+    if (!canvas.classList.contains('is-live')){ canvas.classList.add('is-live'); fb.classList.add('is-hidden'); }
+  }
+  function setRunning(on){ if (on && !raf){ last = performance.now(); raf = requestAnimationFrame(frame); } if (!on && raf){ cancelAnimationFrame(raf); raf = 0; } }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; setRunning(visible && !document.hidden); }, { threshold:0 }).observe(stage);
+  document.addEventListener('visibilitychange', () => setRunning(visible && !document.hidden));
+  setRunning(true);
+
+  return { resize, setFlavor, redrawLabels };
+}
+
+/* ---------------- фолбэк без WebGL: SVG-бутылка ---------------- */
+function fbSvg(f){
+  const c = f.color, L = lum(hexRgb(f.color)), ink = rgb(inkOf(hexRgb(f.color)));
+  const nm = f.name.split(' ');
+  const nameT = nm.length > 1 && f.name.length > 9
+    ? `<text x="100" y="296" font-size="24">${nm.slice(0,Math.ceil(nm.length/2)).join(' ')}</text><text x="100" y="322" font-size="24">${nm.slice(Math.ceil(nm.length/2)).join(' ')}</text>`
+    : `<text x="100" y="312" font-size="${f.name.length > 6 ? 30 : 36}">${f.name}</text>`;
+  return `<svg viewBox="0 0 200 520" aria-hidden="true">
+    <ellipse cx="100" cy="512" rx="78" ry="8" fill="rgba(60,44,30,.18)"/>
+    <path d="M74 92h52v14c0 10 40 30 58 66 4 8 6 16 6 26v276c0 22-10 32-30 32H40c-20 0-30-10-30-32V198c0-10 2-18 6-26 18-36 58-56 58-66Z" fill="rgba(255,255,255,.32)" stroke="rgba(31,29,26,.14)" stroke-width="1.2"/>
+    <path d="M20 200c0-8 2-15 6-22 16-30 50-50 64-60h20c14 10 48 30 64 60 4 7 6 14 6 22v270c0 18-8 26-24 26H44c-16 0-24-8-24-26Z" fill="${c}" opacity=".9"/>
+    <rect x="16" y="208" width="168" height="176" fill="#FBF8F2"/>
+    <rect x="16" y="358" width="168" height="26" fill="${c}"/>
+    <circle cx="100" cy="240" r="13" fill="none" stroke="#B08D57" stroke-width="1.4"/>
+    <text x="100" y="244.5" font-size="12" fill="#B08D57" font-family="Cormorant Garamond, Georgia, serif" font-weight="600" text-anchor="middle">AV</text>
+    <text x="100" y="270" font-size="7.5" letter-spacing="2" fill="#1F1D1A" font-family="Manrope, sans-serif" font-weight="600" text-anchor="middle">AYURVEDA WATER</text>
+    <g fill="${ink}" font-family="Cormorant Garamond, Georgia, serif" font-weight="600" text-anchor="middle">${nameT}</g>
+    <text x="100" y="345" font-size="11" fill="#5E574D" font-style="italic" font-family="Cormorant Garamond, Georgia, serif" text-anchor="middle">аюрведический эликсир</text>
+    <rect x="70" y="18" width="60" height="70" rx="8" fill="#1A1918"/>
+    <rect x="66" y="86" width="68" height="8" rx="3" fill="rgba(255,255,255,.5)" stroke="rgba(31,29,26,.18)"/>
+    <path d="M30 196v270" stroke="#fff" stroke-opacity=".55" stroke-width="5" stroke-linecap="round"/>
+  </svg>`;
+}
+
+/* ---------------- переход между вкусами ---------------- */
+function updateStatic(i){
+  const f = FLAVORS[i];
+  $$('.js-num').forEach(n => n.textContent = pad(i+1));
+  $('#shNum').textContent = `Вкус ${pad(i+1)} из ${pad(N)}`;
+  $('#shName').textContent = f.name; $('#shComp').textContent = f.comp; $('#shUse').textContent = f.use;
+  $('#shProps').innerHTML = f.props.map(p => `<li>${p[1]}</li>`).join('');
+  flBtns.forEach((b,k) => b.setAttribute('aria-current', k===i ? 'true' : 'false'));
+  live.textContent = `${f.name}, ${i+1} из ${N}`;
+}
+function setMobileTitle(f){ $('#mName').textContent = f.name; $('#mComp').textContent = f.comp; }
+
+function go(i, opts = {}){
+  i = ((i % N) + N) % N;
+  if (busy){ pending = i; return; }
+  if (i === current) return;
+  const prev = current, delta = wrapD(i - prev) || 1;
+  const fwd = opts.dir != null ? opts.dir > 0 : delta > 0;
+  busy = true; current = i;
+  const f = FLAVORS[i], col = hexRgb(f.color);
+  updateStatic(i);
+  if (!opts.fromScroll) syncScroll(i);
+  selProp = 0;
+
+  const done = () => {
+    busy = false;
+    if (pending !== null && pending !== current){ const p = pending; pending = null; go(p); } else pending = null;
+  };
+
+  if (reduce){
+    const fade = [bigname, ingBack, ingFront, propsEl, slot, glWrap, $('#mtitle')];
+    const tl = gsap.timeline({ onComplete: done });
+    tl.to(fade, { opacity:0, duration:.22, ease:'power1.out' })
+      .add(() => { setBigName(f); fillIngs(f); fillProps(f); setMobileTitle(f); wheel.pos += delta; layoutWheel(); swapBottle(i, true); })
+      .to(tint, { r:col[0], g:col[1], b:col[2], duration:.3, onUpdate:applyTint }, '<')
+      .to(fade, { opacity:1, duration:.32, ease:'power1.out' });
+    return;
+  }
+
+  const D = 1.2;
+  const tl = gsap.timeline({ onComplete: done });
+  const oldChars = chars();
+  const outSide = el => (el._bx + parseFloat(el.style.width)/2) < slotRect.x + slotRect.w/2 ? -1 : 1;
+
+  // 1. старые свойства, ингредиенты и название уходят
+  tl.to(prInner, { opacity:0, x: isMobile ? 0 : 26, y: isMobile ? 10 : 0, duration:.3, stagger:.035, ease:'power2.in' }, 0);
+  tl.to(ingFly, { opacity:0, scale:.45, x:(k) => outSide(ingEls[k]) * 90, y:-36, rotation:'+=50', duration:.42, stagger:.03, ease:'power2.in' }, 0);
+  tl.to(oldChars, { opacity:0, yPercent: fwd ? -28 : 28, duration:.32, stagger:.016, ease:'power2.in' }, 0);
+  tl.to('#mtitle', { opacity:0, y:-8, duration:.28, ease:'power2.in' }, 0);
+
+  // 2. бутылка: оборот 360°, этикетка меняется, когда смотрит назад
+  const dirA = fwd ? -1 : 1;
+  const from = spin.a, to = (Math.round(from/(Math.PI*2)) + dirA) * Math.PI*2, swapAt = to - dirA*Math.PI;
+  let swapped = false;
+  tl.to(spin, { a: to, duration: D, ease:'power3.inOut', onUpdate(){
+      if (!swapped && (spin.a - swapAt)*dirA >= 0){ swapped = true; swapBottle(i); }
+    }, onComplete(){ if (!swapped) swapBottle(i); spin.a = 0; } }, 0);
+  tl.to(spin, { lift:1, duration:D/2, ease:'sine.out', yoyo:true, repeat:1 }, 0);
+  if (!three){
+    tl.to(fbIn, { scaleX:0, duration:.36, ease:'power2.in' }, .22)
+      .add(() => { fbIn.innerHTML = fbSvg(f); }, .58)
+      .to(fbIn, { scaleX:1, duration:.5, ease:'power3.out' }, .58);
+  }
+
+  // 3. колесо, фон, название по буквам
+  tl.to(wheel, { pos: wheel.pos + delta, duration:1.05, ease:'power3.inOut', onUpdate: layoutWheel }, 0);
+  tl.to(tint, { r:col[0], g:col[1], b:col[2], duration:1.05, ease:'power2.inOut', onUpdate: applyTint }, .08);
+  tl.add(() => {
+    setBigName(f); setMobileTitle(f);
+    gsap.fromTo(chars(), { opacity:0, yPercent: fwd ? 30 : -30 }, { opacity:1, yPercent:0, duration:.7, stagger:.035, ease:'power3.out' });
+    gsap.fromTo('#mtitle', { opacity:0, y:10 }, { opacity:1, y:0, duration:.6, ease:'power3.out' });
+  }, .44);
+
+  // 4. новые ингредиенты влетают, свойства появляются по дуге по одному
+  tl.add(() => {
+    fillIngs(f);
+    gsap.fromTo(ingFly, { opacity:0, scale:.4, x:(k) => -outSide(ingEls[k]) * 70, y:44, rotation:-40 },
+      { opacity:1, scale:1, x:0, y:0, rotation:0, duration:.9, stagger:.06, ease:'expo.out' });
+  }, .6);
+  tl.add(() => {
+    fillProps(f);
+    gsap.fromTo(prInner, { opacity:0, x: isMobile ? 0 : 30, y: isMobile ? 12 : 0 }, { opacity:1, x:0, y:0, duration:.6, stagger:.08, ease:'power3.out' });
+  }, .7);
+}
+
+function swapBottle(i, instant){
+  if (three) three.setFlavor(i, instant);
+  else if (instant) fbIn.innerHTML = fbSvg(FLAVORS[i]);
+}
+
+/* ---------------- скролл: экран закреплён на 6 шагов (десктоп) ---------------- */
+let st = null, syncing = false;
+function syncScroll(i){
+  if (!st) return;
+  syncing = true;
+  const y = st.start + (st.end - st.start) * i/(N-1);
+  window.scrollTo({ top: y, behavior: 'auto' });
+  requestAnimationFrame(() => requestAnimationFrame(() => { syncing = false; }));
+}
+function setupScroll(){
+  gsap.registerPlugin(ScrollTrigger);
+  const mm = gsap.matchMedia();
+  mm.add({ desk: `(min-width: 761px) and (orientation: landscape), (min-width: 1101px)` }, () => {
+    st = ScrollTrigger.create({
+      trigger: stage, start:'top top', end: () => '+=' + Math.round(innerHeight*.75*(N-1)),
+      pin: true, pinSpacing: true, anticipatePin: 1,
+      snap: { snapTo: 1/(N-1), duration:{ min:.2, max:.55 }, delay:.06, ease:'power1.inOut' },
+      onUpdate(self){ if (syncing) return; const idx = Math.round(self.progress*(N-1)); if (idx !== current) go(idx, { fromScroll:true }); }
+    });
+    if (current) syncScroll(current);
+    // колесо мыши/трекпад: один жест = один вкус, пока экран закреплён
+    let lastEv = 0, lastStep = 0, acc = 0;
+    const onWheel = e => {
+      if (!st || document.body.classList.contains('is-sheet')) return;
+      const y = scrollY, dy = e.deltaY, now = performance.now();
+      const inPin = y >= st.start - 2 && y <= st.end + 2;
+      if (!inPin) return;
+      if ((dy > 0 && current >= N-1 && !busy) || (dy < 0 && current <= 0 && !busy)) return; // выпускаем страницу дальше
+      e.preventDefault();
+      const newGesture = now - lastEv > 220; lastEv = now;
+      if (newGesture) acc = 0;
+      acc += dy;
+      if (busy || now - lastStep < (newGesture ? 350 : 1100) || Math.abs(acc) < 24) return;
+      lastStep = now; acc = 0;
+      go(current + (dy > 0 ? 1 : -1), { dir: dy > 0 ? 1 : -1 });
+    };
+    addEventListener('wheel', onWheel, { passive:false });
+    return () => { st = null; removeEventListener('wheel', onWheel); };
+  });
+}
+
+/* ---------------- управление ---------------- */
+$('#prev').addEventListener('click', () => go(current - 1, { dir:-1 }));
+$('#next').addEventListener('click', () => go(current + 1, { dir: 1 }));
+document.addEventListener('keydown', e => {
+  if (document.body.classList.contains('is-sheet')){ if (e.key === 'Escape') closeSheet(); return; }
+  if (e.target.closest && e.target.closest('input,textarea,select')) return;
+  if (e.key === 'ArrowRight'){ e.preventDefault(); go(current + 1, { dir:1 }); }
+  else if (e.key === 'ArrowLeft'){ e.preventDefault(); go(current - 1, { dir:-1 }); }
+  else if ((e.key === 'ArrowDown' || e.key === 'PageDown') && st && st.isActive && current < N-1){ e.preventDefault(); go(current + 1, { dir:1 }); }
+  else if ((e.key === 'ArrowUp' || e.key === 'PageUp') && st && st.isActive && current > 0){ e.preventDefault(); go(current - 1, { dir:-1 }); }
+});
+
+// перетаскивание бутылки: мышь — свободное вращение; палец — свайп между вкусами
+(() => {
+  let id = null, x0 = 0, y0 = 0, a0 = 0, lastX = 0, lastT = 0, vel = 0, mode = null, type = 'mouse';
+  const canvas = slot;
+  canvas.addEventListener('pointerdown', e => {
+    if (busy) return;
+    id = e.pointerId; type = e.pointerType; x0 = lastX = e.clientX; y0 = e.clientY; a0 = spin.a; lastT = performance.now(); vel = 0;
+    mode = type === 'mouse' ? 'rot' : null;
+    gsap.killTweensOf(spin, 'a');
+    if (mode) { try { canvas.setPointerCapture(id); } catch(_){} canvas.classList.add('is-drag'); }
+  });
+  canvas.addEventListener('pointermove', e => {
+    if (e.pointerId !== id) return;
+    const dx = e.clientX - x0, dy = e.clientY - y0;
+    if (!mode){
+      if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)*1.2){ mode = 'swipe'; try { canvas.setPointerCapture(id); } catch(_){} }
+      else if (Math.abs(dy) > 10){ id = null; return; }
+      else return;
+    }
+    const now = performance.now(); vel = vel*.5 + .5*(e.clientX - lastX) / Math.max(16, now - lastT); lastX = e.clientX; lastT = now;
+    spin.a = a0 + dx * (mode === 'swipe' ? .011 : .009);
+  });
+  const end = e => {
+    if (e.pointerId !== id) return;
+    const dx = e.clientX - x0; id = null; canvas.classList.remove('is-drag');
+    const TAU = Math.PI*2;
+    if (mode === 'swipe' && (Math.abs(dx) > 50 || (Math.abs(vel) > .6 && Math.abs(dx) > 20))){
+      mode = null; const next = dx < 0; go(current + (next ? 1 : -1), { dir: next ? 1 : -1 }); return;
+    }
+    const target = mode === 'rot' ? Math.round((spin.a + vel*14)/TAU)*TAU : Math.round(spin.a/TAU)*TAU;
+    mode = null;
+    gsap.to(spin, { a: target, duration: 1.1, ease:'power3.out', onComplete(){ spin.a = 0; } });
+  };
+  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', end);
+})();
+
+/* ---------------- «Подробнее» ---------------- */
+let lastFocus = null;
+function openSheet(){ lastFocus = document.activeElement; document.body.classList.add('is-sheet'); setTimeout(() => $('#sheetX').focus(), 60); }
+function closeSheet(){ document.body.classList.remove('is-sheet'); if (lastFocus) lastFocus.focus(); }
+$$('.js-more').forEach(b => b.addEventListener('click', openSheet));
+$('#sheetX').addEventListener('click', closeSheet); $('#scrim').addEventListener('click', closeSheet);
+
+/* ---------------- нижний блок ---------------- */
+$('#swatches').innerHTML = FLAVORS.map((f,i) => `<li><button type="button" data-i="${i}" style="--c:${f.color}"><i></i>${f.name}</button></li>`).join('');
+$$('#swatches button').forEach(b => b.addEventListener('click', () => {
+  const i = +b.dataset.i;
+  const top = st ? st.start + (st.end - st.start)*i/(N-1) : 0;
+  window.scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
+  if (!st) go(i);
+}));
+
+/* ---------------- запуск ---------------- */
+const f0 = FLAVORS[0];
+setTint(f0.color); updateStatic(0); setMobileTitle(f0); fillProps(f0); fillIngs(f0);
+fbIn.innerHTML = fbSvg(f0);
+setupPropsInteractivity();
+layout(); setBigName(f0);
+
+if (window.THREE && window.THREE.RoomEnvironment && hasWebGL()){
+  try { three = initThree(); three.resize(stage.clientWidth, stage.clientHeight, slotRect); three.setFlavor(0, true); }
+  catch(err){ console.warn('WebGL недоступен, показываю фолбэк', err); three = null; glWrap.remove(); }
+} else { glWrap.remove(); }
+
+if (window.gsap && window.ScrollTrigger) setupScroll();
+
+// шрифты пришли — переверстать подписи и этикетки
+if (document.fonts && document.fonts.ready){
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]).then(() => {
+    fitBigName(); layoutWheel();
+    if (three) three.redrawLabels();
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  });
+}
+
+// параллакс ингредиентов
+(function loop(){
+  ptr.sx += (ptr.x - ptr.sx)*.06; ptr.sy += (ptr.y - ptr.sy)*.06;
+  const k = reduce ? 0 : 1;
+  for (const el of ingEls){
+    const z = +el.dataset.z;
+    el.style.transform = `translate3d(${(el._bx + ptr.sx*z*30*k).toFixed(1)}px,${(el._by + ptr.sy*z*20*k).toFixed(1)}px,0)`;
+  }
+  requestAnimationFrame(loop);
+})();
+
+// стартовое появление
+if (!reduce){
+  gsap.from(chars(), { opacity:0, yPercent:24, duration:1.1, stagger:.05, ease:'expo.out', delay:.1 });
+  gsap.from(ingFly, { opacity:0, scale:.5, y:40, duration:1.2, stagger:.08, ease:'expo.out', delay:.35 });
+  gsap.from(prInner, { opacity:0, x: isMobile ? 0 : 30, y: isMobile ? 12 : 0, duration:.8, stagger:.08, ease:'power3.out', delay:.5 });
+  gsap.from(spin, { lift:1.6, duration:1.4, ease:'power3.out' });
+}
+
+let rT = 0;
+function onResize(){
+  clearTimeout(rT);
+  rT = setTimeout(() => {
+    const m = mqM.matches;
+    if (m !== isMobile){ isMobile = m; setupPropsInteractivity(); renderPropSel(); }
+    layout();
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }, 80);
+}
+addEventListener('resize', onResize);
+mqM.addEventListener && mqM.addEventListener('change', onResize);
+mqR.addEventListener && mqR.addEventListener('change', e => { reduce = e.matches; });
+})();
+</script>
+
+</body></html>
